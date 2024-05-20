@@ -1,0 +1,85 @@
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      .logo img{
+       height: 50px;
+       border: red 2px solid;
+       border-radius: 50%;
+      }
+
+      header {
+        background-color: #333;
+        color: #fff;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        padding-left: 70px;
+        padding-right: 70px;
+      }
+
+      .social-links {
+        display: flex;
+        align-items: center;
+      }
+
+      .social-links a {
+        color: #fff;
+        text-decoration: none;
+        margin-left: 10px;
+        font-size: 20px;
+        padding: 15px;
+      }
+
+      nav {
+        background-color: #444;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-evenly;
+      }
+
+      nav a {
+        color: #fff;
+        text-decoration: none;
+        margin: 0 10px;
+      }
+      #nasim{
+        display: flex;
+      }
+
+      .sidebar {
+        background-color: #eee;
+        width: 20%;
+        padding: 20px;
+        float: left;
+      }
+
+      .main-content {
+        width: 80%;
+        padding: 20px;
+        float: left;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .box {
+        background-color: #f9f9f9;
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+
+      footer {
+        background-color: #333;
+        color: #fff;
+        padding: 10px 20px;
+        clear: both;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .box img{
+        height: 250px;
+        width: 100%;
+      }
