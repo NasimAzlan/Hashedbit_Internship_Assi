@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin-top: 10%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .nasim {
+        margin: 10px;
+      }
+      button {
+        color: rgb(242, 81, 6);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="nasim"><div id="time" 00:00:00></div></div>
+    <div>
+      <button onclick="start()" id="start">start</button>
+      <button onclick="pause()" id="pause">pause</button>
+      <button onclick="stop()" id="stop">stop</button>
+    </div>
+    <script>
+      let timeInterval;
+      let startTime;
+      let elapseTime = 0;
+      let isRunning = false;
+
+      function format(seconds) {
+        const hours = Math.floor(seconds / 3600);
+        const min = Math.floor((seconds % 3600) / 60);
+        const remainingSec = seconds % 60;
+
+        return `${String(hours).padStart(2, "0")}:${String(min).padStart(
+          2,
+          "0"
+        )}:${String(remainingSec).padStart(2, "0")}`;
+      }
+      function updateDisplay(timeString) {
+        document.getElementById("time").textContent = timeString;
+      }
+
+      function start() {
+        if (!isRunning) {
+          isRunning = true;
+          updateDisplay(format(elapseTime));
+          startTime = Date.now();
+          timeInterval = setInterval(() => {
+            const currentTime = Math.floor(
+              (Date.now() - startTime + elapseTime) / 1000
+            );
+            updateDisplay(format(currentTime));
+          }, 1000);
+          document.getElementById("start").disabled = true;
+          document.getElementById("pause").disabled = false;
+          document.getElementById("stop").disabled = false;
+        }
+      }
+      function pause() {
+        if (isRunning) {
+          clearInterval(timeInterval);
+          elapseTime += Date.now() - startTime;
+          isRunning = false;
+          document.getElementById("pause").textContent = "Continue";
+        } else {
+          isRunning = true;
+          startTime = Date.now();
+          timeInterval = setInterval(() => {
+            const currentTime = Math.floor(
+              (Date.now() - startTime + elapseTime) / 1000
+            );
+            updateDisplay(format(currentTime));
+          }, 1000);
+          document.getElementById("pause").textContent = "Pause";
+        }
+      }
+
+      function stop() {
+        clearInterval(timeInterval);
+        isRunning = false;
+        elapseTime = 0;
+        updateDisplay("00:00:00");
+
+        document.getElementById("start").disabled = false;
+        document.getElementById("pause").disabled = true;
+        document.getElementById("stop").disabled = true;
+      }
+    </script>
+  </body>
+</html>
